@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en" class="dark" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CITIC Tourism & Leisure Consulting | Comprehensive Portal</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#13111C',
+                        cardBg: '#1C1929',
+                        accentGold: '#D4AF37',
+                        accentGoldHover: '#F3E5AB',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            display: flex;
+            width: 200%;
+            animation: marquee 25s linear infinite;
+        }
+        .animate-marquee:hover {
+            animation-play-state: paused;
+        }
+        .corporate-bg {
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .corporate-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(19, 17, 28, 0.88);
+            z-index: 1;
+        }
+        .corporate-content {
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body class="bg-darkBg text-gray-100 font-sans min-h-screen flex flex-col selection:bg-accentGold selection:text-black">
+
+    <!-- Sticky Top Navigation Bar (5 Services) -->
+    <header class="sticky top-0 z-50 bg-darkBg/95 backdrop-blur border-b border-gray-800 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <div class="w-10 h-10 rounded-full bg-accentGold flex items-center justify-center text-black font-bold text-xl shadow-lg">
+                    <i class="fa-solid fa-earth-americas"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold tracking-wider text-white">CITIC TOURISM</h1>
+                    <p class="text-xs text-accentGold font-medium">RAKEZ Free Zone, UAE | & Leisure Consulting</p>
+                </div>
+            </div>
+
+            <!-- Desktop Nav Links (5 Service Sections) -->
+            <nav class="hidden lg:flex items-center space-x-1 text-xs sm:text-sm font-semibold">
+                <a href="#uae-services" class="px-3 py-2 rounded-lg text-gray-300 hover:text-accentGold hover:bg-cardBg transition">UAE Services</a>
+                <a href="#vfs-visa" class="px-3 py-2 rounded-lg text-gray-300 hover:text-accentGold hover:bg-cardBg transition">VFS Visa Assistance</a>
+                <a href="#uae-packages" class="px-3 py-2 rounded-lg text-gray-300 hover:text-accentGold hover:bg-cardBg transition">UAE Tourist Packages</a>
+                <a href="#international-tours" class="px-3 py-2 rounded-lg text-gray-300 hover:text-accentGold hover:bg-cardBg transition">International Tours</a>
+                <a href="#tours-info" class="px-3 py-2 rounded-lg text-gray-300 hover:text-accentGold hover:bg-cardBg transition">Tours & Info</a>
+            </nav>
+
+            <!-- Action Controls & Currency Selector -->
+            <div class="flex items-center space-x-2">
+                <select id="currency-select" onchange="changeCurrency()" class="bg-cardBg border border-accentGold/50 text-accentGold px-2.5 py-1.5 rounded-lg text-xs font-bold hover:bg-accentGold hover:text-black transition focus:outline-none cursor-pointer">
+                    <option value="AED">AED (د.إ)</option>
+                    <option value="USD">USD ($)</option>
+                    <option value="EUR">EUR (€)</option>
+                    <option value="GBP">GBP (£)</option>
+                </select>
+                <button onclick="toggleChecklistDrawer()" class="bg-cardBg border border-accentGold/50 text-accentGold px-3 py-2 rounded-lg text-xs font-bold hover:bg-accentGold hover:text-black transition flex items-center space-x-1.5 shadow" title="Visa Checklist">
+                    <i class="fa-solid fa-list-check"></i>
+                    <span class="hidden sm:inline">Checklist</span>
+                </button>
+                <button onclick="toggleMobileMenu()" class="lg:hidden text-gray-300 hover:text-white text-2xl p-1">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-cardBg border-b border-gray-800 px-4 pt-2 pb-4 space-y-2 text-sm font-semibold">
+            <a href="#uae-services" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded text-gray-300 hover:text-accentGold hover:bg-darkBg">UAE Services</a>
+            <a href="#vfs-visa" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded text-gray-300 hover:text-accentGold hover:bg-darkBg">VFS Visa Assistance</a>
+            <a href="#uae-packages" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded text-gray-300 hover:text-accentGold hover:bg-darkBg">UAE Tourist Packages</a>
+            <a href="#international-tours" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded text-gray-300 hover:text-accentGold hover:bg-darkBg">International Tours</a>
+            <a href="#tours-info" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded text-gray-300 hover:text-accentGold hover:bg-darkBg">Tours & Info</a>
+        </div>
+    </header>
+
+    <!-- Interactive Document Checklist Drawer -->
+    <div id="checklist-drawer" class="fixed inset-y-0 right-0 z-50 w-full sm:w-96 bg-cardBg border-l border-accentGold/50 shadow-2xl p-6 transform translate-x-full transition-transform duration-300 flex flex-col justify-between">
+        <div class="space-y-4">
+            <div class="flex justify-between items-center border-b border-gray-800 pb-3">
+                <h3 class="font-bold text-white text-lg flex items-center space-x-2">
+                    <i class="fa-solid fa-list-check text-accentGold"></i>
+                    <span>Traveler Paperwork Checklist</span>
+                </h3>
+                <button onclick="toggleChecklistDrawer()" class="text-gray-400 hover:text-white text-xl"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <p class="text-xs text-gray-400">Check off documents as you prepare them. Saved locally in your browser session.</p>
+            <div id="checklist-items" class="space-y-3 pt-2 text-sm"></div>
+        </div>
+        <div class="pt-4 border-t border-gray-800 space-y-3">
+            <button onclick="clearChecklist()" class="w-full bg-darkBg hover:bg-gray-800 text-gray-300 border border-gray-700 text-xs font-bold py-2 rounded-lg transition">Reset Checklist</button>
+            <button onclick="sendChecklistToAgent()" class="w-full bg-accentGold hover:bg-accentGoldHover text-black text-xs font-bold py-2.5 rounded-lg transition flex items-center justify-center space-x-2 shadow">
+                <i class="fa-brands fa-whatsapp text-sm"></i>
+                <span>Send Checklist Status to Agent</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Global Modal -->
+    <div id="global-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-cardBg border border-accentGold rounded-2xl max-w-xl w-full p-6 shadow-2xl relative space-y-4 animate-in fade-in zoom-in duration-200">
+            <button onclick="closeGlobalModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl"><i class="fa-solid fa-xmark"></i></button>
+            <div id="modal-content" class="space-y-4"></div>
+        </div>
+    </div>
+
+    <!-- Floating WhatsApp Agent Button -->
+    <a href="https://wa.me/971556217946?text=Hello%20CITIC%20Tourism%2C%20I%20would%20like%20to%20connect%20with%20an%20agent." target="_blank" class="fixed bottom-6 right-6 z-40 bg-green-600 hover:bg-green-500 text-white p-3.5 rounded-full shadow-2xl flex items-center space-x-2.5 transition transform hover:scale-110">
+        <div class="relative">
+            <i class="fa-brands fa-whatsapp text-3xl"></i>
+            <span class="absolute -top-1 -right-1 bg-accentGold text-black text-[10px] font-bold px-1 rounded-full"><i class="fa-solid fa-robot"></i></span>
+        </div>
+        <span class="hidden md:inline font-bold text-sm pr-1">Chat with Agent</span>
+    </a>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full space-y-16">
+
+        <!-- ================= SECTION 1: UAE SERVICES ================= -->
+        <section id="uae-services" class="space-y-10 corporate-bg rounded-2xl p-4 sm:p-8 shadow-2xl scroll-mt-24" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80');">
+            <div class="corporate-content space-y-10">
+                
+                <!-- Security Notice Marquee -->
+                <div class="bg-cardBg border border-accentGold/50 rounded-xl overflow-hidden py-3 shadow-md relative">
+                    <div class="absolute left-0 top-0 bottom-0 bg-accentGold text-black font-bold px-4 z-10 flex items-center text-xs tracking-wider uppercase">
+                        <i class="fa-solid fa-triangle-exclamation mr-2"></i> <span>Security Notice</span>
+                    </div>
+                    <div class="overflow-hidden whitespace-nowrap">
+                        <div class="animate-marquee flex space-x-12 text-sm font-semibold text-accentGold">
+                            <span>🚨 WARNING: CITIC Tourism never asks for direct online payment transfers to personal accounts. Verify all transactions through official channels!</span>
+                            <span>✨ Welcome to CITIC Tourism & Leisure Consulting - RAKEZ Free Zone, UAE! Your trusted concierge for visas, flights, and global tours.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Banner -->
+                <div class="bg-gradient-to-r from-cardBg to-gray-900 border border-gray-800 rounded-2xl p-8 shadow-xl flex flex-col md:flex-row justify-between items-center gap-6">
+                    <div class="space-y-3">
+                        <span class="bg-accentGold/25 text-accentGold text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-accentGold/45">RAKEZ Official UAE Concierge</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-white">CITIC Tourism & Leisure Consulting</h2>
+                        <p class="text-gray-300 max-w-xl text-sm sm:text-base">Your premier partner based in RAKEZ Free Zone for UAE visa processing, corporate setup, flight bookings, MICE retreats, and tailored tourism solutions.</p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+                        <a href="https://wa.me/971556217946?text=Hello%20CITIC%20Tourism%2C%20I%20need%20immediate%20UAE%20assistance." target="_blank" class="bg-accentGold hover:bg-accentGoldHover text-black font-bold px-6 py-3 rounded-xl text-center transition flex items-center justify-center space-x-2 shadow-lg">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                            <span>WhatsApp Agent</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Flight Search Widget -->
+                <div class="bg-cardBg border border-accentGold/40 rounded-2xl p-6 shadow-2xl space-y-6">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-800 pb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-white flex items-center space-x-2">
+                                <i class="fa-solid fa-plane-departure text-accentGold"></i>
+                                <span>IATA Flight Ticket Inquiry Concierge</span>
+                            </h3>
+                            <p class="text-xs text-gray-400 mt-0.5">Search live routes and submit instant flight itinerary requests to our agent.</p>
+                        </div>
+                        <div class="flex items-center space-x-2 bg-darkBg p-1 rounded-lg border border-gray-800 self-start sm:self-auto">
+                            <button id="trip-round" onclick="setTripType('round')" class="px-3 py-1 text-xs font-bold rounded-md bg-accentGold text-black transition">Round Trip</button>
+                            <button id="trip-one" onclick="setTripType('one')" class="px-3 py-1 text-xs font-bold rounded-md text-gray-400 hover:text-white transition">One Way</button>
+                        </div>
+                    </div>
+
+                    <form id="flight-search-form" onsubmit="handleFlightSearch(event)" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-gray-300 flex items-center"><i class="fa-solid fa-plane-departure text-accentGold mr-1.5"></i> From (Departure)</label>
+                            <input type="text" id="flight-from" placeholder="e.g. Dubai (DXB) or Calicut (CCJ)" required class="w-full bg-darkBg border border-gray-700 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-accentGold">
+                        </div>
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-gray-300 flex items-center"><i class="fa-solid fa-plane-arrival text-accentGold mr-1.5"></i> To (Destination)</label>
+                            <input type="text" id="flight-to" placeholder="e.g. Kozhikode (CCJ) or London (LHR)" required class="w-full bg-darkBg border border-gray-700 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-accentGold">
+                        </div>
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-gray-300 flex items-center"><i class="fa-regular fa-calendar-days text-accentGold mr-1.5"></i> Departure Date</label>
+                            <input type="date" id="flight-depart" required class="w-full bg-darkBg border border-gray-700 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-accentGold">
+                        </div>
+                        <div id="return-date-container" class="space-y-1.5">
+                            <label class="text-xs font-semibold text-gray-300 flex items-center"><i class="fa-regular fa-calendar-check text-accentGold mr-1.5"></i> Return Date</label>
+                            <input type="date" id="flight-return" class="w-full bg-darkBg border border-gray-700 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-accentGold">
+                        </div>
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-gray-300 flex items-center"><i class="fa-solid fa-users text-accentGold mr-1.5"></i> Passengers</label>
+                            <select id="flight-passengers" class="w-full bg-darkBg border border-gray-700 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-accentGold">
+                                <option value="1 Adult">1 Adult</option>
+                                <option value="2 Adults">2 Adults</option>
+                                <option value="Family (2 Adults + Children)">Family (2 Adults + Children)</option>
+                                <option value="Student Fare Query">Student Fare Request</option>
+                            </select>
+                        </div>
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-gray-300 flex items-center"><i class="fa-solid fa-chair text-accentGold mr-1.5"></i> Cabin Class</label>
+                            <select id="flight-class" class="w-full bg-darkBg border border-gray-700 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-accentGold">
+                                <option value="Economy">Economy Class</option>
+                                <option value="Premium Economy">Premium Economy</option>
+                                <option value="Business Class">Business Class</option>
+                                <option value="First Class">First Class VIP</option>
+                            </select>
+                        </div>
+                        <div class="sm:col-span-2 lg:col-span-4 flex items-center space-x-2 pt-1">
+                            <input type="checkbox" id="flight-consent" required class="accent-accentGold w-4 h-4 rounded cursor-pointer">
+                            <label for="flight-consent" class="text-xs text-gray-300 cursor-pointer">
+                                I agree to the <a href="javascript:void(0)" onclick="openTermsModal()" class="text-accentGold underline hover:text-accentGoldHover">Terms and Conditions</a> and <a href="javascript:void(0)" onclick="openPrivacyModal()" class="text-accentGold underline hover:text-accentGoldHover">Privacy Policy</a>.
+                            </label>
+                        </div>
+                        <div class="sm:col-span-2 lg:col-span-4 flex items-end">
+                            <button type="submit" class="w-full bg-accentGold hover:bg-accentGoldHover text-black font-extrabold py-2.5 px-4 rounded-xl text-xs transition flex items-center justify-center space-x-2 shadow-lg">
+                                <i class="fa-solid fa-magnifying-glass text-sm"></i>
+                                <span>Check Available Fares & Request Booking</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Application Status Tracker -->
+                <div class="bg-cardBg border border-gray-800 rounded-2xl p-6 shadow-2xl space-y-4">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-800 pb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-white flex items-center space-x-2">
+                                <i class="fa-solid fa-magnifying-glass-chart text-accentGold"></i>
+                                <span>Track Application Status</span>
+                            </h3>
+                            <p class="text-xs text-gray-400 mt-0.5">Enter your CITIC Reference Number (e.g., CT-89421) to check live processing status.</p>
+                        </div>
+                    </div>
+                    <form onsubmit="handleStatusLookup(event)" class="space-y-3">
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <input type="text" id="status-ref-input" placeholder="e.g. CT-89421" required class="flex-grow bg-darkBg border border-gray-700 rounded-xl px-4 py-2.5 text-xs text-white uppercase placeholder-gray-500 focus:outline-none focus:border-accentGold">
+                            <button type="submit" class="bg-accentGold hover:bg-accentGoldHover text-black font-extrabold px-6 py-2.5 rounded-xl text-xs transition flex items-center justify-center space-x-2 shadow-lg">
+                                <i class="fa-solid fa-arrows-rotate"></i>
+                                <span>Check Status</span>
+                            </button>
+                        </div>
+                        <div class="flex items-center space-x-2 pt-1">
+                            <input type="checkbox" id="status-consent" required class="accent-accentGold w-4 h-4 rounded cursor-pointer">
+                            <label for="status-consent" class="text-xs text-gray-300 cursor-pointer">
+                                I agree to the <a href="javascript:void(0)" onclick="openTermsModal()" class="text-accentGold underline hover:text-accentGoldHover">Terms and Conditions</a> and <a href="javascript:void(0)" onclick="openPrivacyModal()" class="text-accentGold underline hover:text-accentGoldHover">Privacy Policy</a>.
+                            </label>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- 193 Countries Global Visa Engine -->
+                <div class="bg-cardBg border border-accentGold/40 rounded-2xl p-6 shadow-2xl space-y-6">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-800 pb-4">
+                        <div>
+                            <div class="flex items-center space-x-2">
+                                <span class="bg-accentGold/20 text-accentGold text-[10px] font-bold px-2 py-0.5 rounded border border-accentGold/30">193 UN Nations Covered</span>
+                                <span class="text-xs text-gray-400">• Multi-Filter Directory</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white flex items-center space-x-2 mt-1">
+                                <i class="fa-solid fa-passport text-accentGold"></i>
+                                <span>Advanced Global Visa Requirement & Directory Search Engine</span>
+                            </h3>
+                            <p class="text-xs text-gray-400 mt-0.5">Filter by destination, passport, purpose of travel, and processing urgency for tailored consular assistance.</p>
+                        </div>
+                    </div>
+
+                    <form onsubmit="handleGlobalVisaSearch(event)" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-gray-300 flex items-center"><i class="fa-solid fa-globe text-accentGold mr-1.5"></i> Destination Country</label>
+                            <select id="global-visa-country" required class="w-full bg-darkBg border border-gray-700 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-accentGold"></select>
+                        </div>
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-gray-300 flex items-center"><i class="fa-solid fa-passport text-accentGold mr-1.5"></i> Passport Nationality</label>
+                            <select id="global-visa-nationality" class="w-full bg-darkBg border border-gray-700 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-accentGold">
+                                <option value="Indian Passport Holder">India (Indian Passport)</option>
+                                <option value="UAE National Passport Holder">UAE (Emirati Passport)</option>
+                                <option value="GCC Resident / Expat">GCC Resident (UAE, KSA, QAT, OMN, BHR, KWT)</option>
+                                <option value="Pakistani Passport Holder">Pakistan</option>
+                                <option value="Philippine Passport Holder">Philippines</option>
+                                <option value="UK / EU Passport Holder">UK / European Union</option>
+                                <option value="US / Canadian Passport Holder">US / Canada</option>
+                                <option value="Other International Passport Holder">Other Foreign Passport Holder</option>
+                            </select>
+                        </div>
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-gray-300 flex items-center"><i class="fa-solid fa-briefcase text-accentGold mr-1.5"></i> Visa Category / Purpose</label>
+                            <select id="global-visa-purpose" class="w-full bg-darkBg border border-gray-700 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-accentGold">
+                                <option value="Tourist / Leisure Visa">Tourist / Holiday (Short Stay)</option>
+                                <option value="Business / Corporate Visa">Business / Conference</option>
+                                <option value="Student / Study Visa">Student / Academic</option>
+                                <option value="Transit / Stopover Visa">Transit / Short Stopover</option>
+                            </select>
+                        </div>
+                        <div class="space-y-1.5">
+                            <label class="text-xs font-semibold text-gray-300 flex items-center"><i class="fa-solid fa-bolt text-accentGold mr-1.5"></i> Processing Speed</label>
+                            <select id="global-visa-speed" class="w-full bg-darkBg border border-gray-700 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-accentGold">
+                                <option value="Standard Processing">Standard Processing</option>
+                                <option value="Express / Priority (3-5 Days)">Express / Priority (3-5 Days)</option>
+                                <option value="Urgent Emergency Application">Urgent Emergency Processing</option>
+                            </select>
+                        </div>
+                        <div class="sm:col-span-2 lg:col-span-4 flex items-center space-x-2 pt-1">
+                            <input type="checkbox" id="global-visa-consent" required class="accent-accentGold w-4 h-4 rounded cursor-pointer">
+                            <label for="global-visa-consent" class="text-xs text-gray-300 cursor-pointer">
+                                I agree to the <a href="javascript:void(0)" onclick="openTermsModal()" class="text-accentGold underline hover:text-accentGoldHover">Terms and Conditions</a> and <a href="javascript:void(0)" onclick="openPrivacyModal()" class="text-accentGold underline hover:text-accentGoldHover">Privacy Policy</a>.
+                            </label>
+                        </div>
+                        <div class="sm:col-span-2 lg:col-span-4 flex items-end">
+                            <button type="submit" class="w-full bg-accentGold hover:bg-accentGoldHover text-black font-extrabold py-3 px-4 rounded-xl text-xs transition flex items-center justify-center space-x-2 shadow-lg">
+                                <i class="fa-solid fa-magnifying-glass-location text-sm"></i>
+                                <span>View Document Requirements & Share via WhatsApp</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- UAE Service Catalog Grid -->
+                <div>
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white border-l-4 border-accentGold pl-3">UAE Based Services & Strategic Consulting</h3>
+                            <p class="text-sm text-gray-400 mt-1">Click any card to open actual document requirements, enter customer name, and share to WhatsApp.</p>
+                        </div>
+                        <span class="text-xs bg-cardBg text-accentGold border border-accentGold/30 px-3 py-1 rounded-full font-bold self-start sm:self-auto">24 Comprehensive Services</span>
+                    </div>
+
+                    <div class="bg-cardBg border border-gray-800 rounded-2xl p-4 mb-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <div class="relative w-full sm:w-96">
+                            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-gray-500 text-xs"></i>
+                            <input type="text" id="uae-service-search" onkeyup="filterUaeServices()" placeholder="Search UAE services (e.g., MICE, RAKEZ, Attestation)..." class="w-full bg-darkBg border border-gray-700 rounded-xl pl-9 pr-3.5 py-2 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-accentGold">
+                        </div>
+                        <button onclick="openVisaQuizModal()" class="w-full sm:w-auto bg-accentGold hover:bg-accentGoldHover text-black font-extrabold px-4 py-2 rounded-xl text-xs transition flex items-center justify-center space-x-2 shadow-md">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            <span>Take Instant Visa Eligibility Quiz</span>
+                        </button>
+                    </div>
+
+                    <div id="uae-services-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ================= SECTION 2: VFS VISA ASSISTANCE ================= -->
+        <section id="vfs-visa" class="space-y-8 corporate-bg rounded-2xl p-4 sm:p-8 shadow-2xl scroll-mt-24" style="background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=1600&q=80');">
+            <div class="corporate-content space-y-8">
+                
+                <div class="bg-cardBg border border-gray-800 rounded-2xl p-8 shadow-xl">
+                    <span class="bg-accentGold/20 text-accentGold text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-accentGold/30">Global Diplomatic Partner</span>
+                    <h2 class="text-3xl font-extrabold text-white mt-2 border-l-4 border-accentGold pl-3">VFS Visa Assistance & Appointment Booking</h2>
+                    <p class="text-gray-300 mt-1 text-sm sm:text-base">Complete paperwork, biometrics coordination, and direct scheduling across 30 major countries with official country flags.</p>
+                </div>
+
+                <!-- VFS Booking Engine -->
+                <div class="bg-cardBg border border-accentGold/40 rounded-2xl p-6 shadow-lg space-y-4">
+                    <h3 class="text-lg font-bold text-white flex items-center space-x-2">
+                        <i class="fa-solid fa-calendar-check text-accentGold"></i>
+                        <span>VFS Appointment Booking Engine</span>
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-accentGold mb-1">VISA CATEGORY</label>
+                            <select id="vfs-category" class="w-full bg-darkBg border border-gray-700 rounded-lg p-3 text-xs text-white">
+                                <option>Tourist / Visitor Visa</option>
+                                <option>Business Visa</option>
+                                <option>Student Visa</option>
+                                <option>Family Reunion</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-accentGold mb-1">DESTINATION COUNTRY</label>
+                            <select id="vfs-country-select" class="w-full bg-darkBg border border-gray-700 rounded-lg p-3 text-xs text-white"></select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-accentGold mb-1">CUSTOMER FULL NAME</label>
+                            <input type="text" id="vfs-name" placeholder="Enter Full Name" class="w-full bg-darkBg border border-gray-700 rounded-lg p-3 text-xs text-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-accentGold mb-1">PASSPORT NUMBER</label>
+                            <input type="text" id="vfs-passport" placeholder="Enter Passport Number" class="w-full bg-darkBg border border-gray-700 rounded-lg p-3 text-xs text-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-accentGold mb-1">PREFERRED APPOINTMENT DATE</label>
+                            <input type="date" id="vfs-date" class="w-full bg-darkBg border border-gray-700 rounded-lg p-3 text-xs text-white">
+                        </div>
+                        <div class="flex items-end">
+                            <button onclick="bookVfsAppointment()" class="w-full bg-accentGold hover:bg-accentGoldHover text-black font-bold p-3 rounded-lg text-xs transition flex items-center justify-center space-x-2 shadow-lg cursor-pointer">
+                                <i class="fa-brands fa-whatsapp text-lg"></i>
+                                <span>Check Requirements & Share via WhatsApp</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 30 Countries Grid -->
+                <div>
+                    <h3 class="text-2xl font-bold text-white mb-6 border-l-4 border-accentGold pl-3">Select Country for VFS Assistance (30 Countries)</h3>
+                    <div id="vfs-countries-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- ================= SECTION 3: UAE TOURIST PACKAGES ================= -->
+        <section id="uae-packages" class="space-y-8 corporate-bg rounded-2xl p-4 sm:p-8 shadow-2xl scroll-mt-24" style="background-image: url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=80');">
+            <div class="corporate-content space-y-8">
+                
+                <div class="bg-cardBg border border-gray-800 rounded-2xl p-8 shadow-xl">
+                    <span class="bg-accentGold/20 text-accentGold text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-accentGold/30">Exclusive Holiday Deals</span>
+                    <h2 class="text-3xl font-extrabold text-white mt-2 border-l-4 border-accentGold pl-3">UAE Tourist Packages & Itineraries</h2>
+                    <p class="text-gray-300 mt-1 text-sm sm:text-base">Explore 30 curated tour packages across Abu Dhabi, Dubai, RAK, and Northern Emirates with instant dynamic currency switching.</p>
+                </div>
+
+                <!-- Marquee Offers -->
+                <div class="bg-cardBg border border-accentGold/40 rounded-xl overflow-hidden py-3 shadow-md relative">
+                    <div class="absolute left-0 top-0 bottom-0 bg-accentGold text-black font-bold px-4 z-10 flex items-center text-xs tracking-wider uppercase">
+                        <i class="fa-solid fa-bullhorn mr-2"></i> <span>Top Offers</span>
+                    </div>
+                    <div class="overflow-hidden whitespace-nowrap">
+                        <div class="animate-marquee flex space-x-8 text-sm font-semibold text-accentGold">
+                            <span>🌟 Desert Safari VIP Deal - AED 150</span>
+                            <span>🌟 Burj Khalifa & Dubai Aquarium Combo - AED 299</span>
+                            <span>🌟 RAK Jebel Jais Mountain Tour with Lunch - AED 199</span>
+                            <span>🌟 Ferrari World Pass & Transfer - AED 450</span>
+                            <span>🌟 Musandam Dibba Cruise with Snorkeling - AED 250</span>
+                            <span>🌟 Global Village & Miracle Garden Pass - AED 120</span>
+                            <span>🌟 Abu Dhabi Grand Mosque Tour - AED 180</span>
+                            <span>🌟 Luxury Yacht Dinner Cruise Dubai Marina - AED 350</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 30 Tourist Packages Grid -->
+                <div id="packages-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+            </div>
+        </section>
+
+
+        <!-- ================= SECTION 4: INTERNATIONAL TOURS ================= -->
+        <section id="international-tours" class="space-y-8 corporate-bg rounded-2xl p-4 sm:p-8 shadow-2xl scroll-mt-24" style="background-image: url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1600&q=80');">
+            <div class="corporate-content space-y-8">
+                
+                <div class="bg-cardBg border border-gray-800 rounded-2xl p-8 shadow-xl">
+                    <span class="bg-accentGold/20 text-accentGold text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-accentGold/30">Worldwide Vacations</span>
+                    <h2 class="text-3xl font-extrabold text-white mt-2 border-l-4 border-accentGold pl-3">International Tours & Global Destinations</h2>
+                    <p class="text-gray-300 mt-1 text-sm sm:text-base">Handpicked international holiday itineraries including flights, 4-star hotel stays, transfers, guided tours, and visa facilitation.</p>
+                </div>
+
+                <!-- Search Filter for International Tours -->
+                <div class="bg-cardBg border border-gray-800 rounded-2xl p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="relative w-full sm:w-96">
+                        <i class="fa-solid fa-plane text-accentGold absolute left-3.5 top-3 text-xs"></i>
+                        <input type="text" id="intl-tour-search" onkeyup="filterIntlTours()" placeholder="Search international destinations (e.g., Georgia, Maldives, Japan)..." class="w-full bg-darkBg border border-gray-700 rounded-xl pl-9 pr-3.5 py-2 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-accentGold">
+                    </div>
+                    <span class="text-xs text-accentGold font-bold bg-darkBg border border-accentGold/30 px-3 py-1.5 rounded-lg">All Packages Include Visa Support</span>
+                </div>
+
+                <!-- International Packages Grid -->
+                <div id="intl-tours-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+            </div>
+        </section>
+
+
+        <!-- ================= SECTION 5: TOURS & INFO ================= -->
+        <section id="tours-info" class="space-y-8 corporate-bg rounded-2xl p-4 sm:p-8 shadow-2xl scroll-mt-24" style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80');">
+            <div class="corporate-content space-y-8">
+                
+                <div class="bg-cardBg border border-gray-800 rounded-2xl p-8 shadow-xl">
+                    <span class="bg-accentGold/20 text-accentGold text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-accentGold/30">Knowledge Base & FAQ</span>
+                    <h2 class="text-3xl font-extrabold text-white mt-2 border-l-4 border-accentGold pl-3">Tours & Consular Travel Guidelines</h2>
+                    <p class="text-gray-300 mt-1 text-sm sm:text-base">Essential rules, visa policies, baggage norms, regulatory warnings, and trade compliance details for international travelers.</p>
+                </div>
+
+                <!-- Travel Information Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-cardBg border border-gray-800 rounded-xl p-5 shadow-lg space-y-3">
+                        <div class="text-accentGold text-2xl"><i class="fa-solid fa-passport"></i></div>
+                        <h4 class="font-bold text-white text-base">UAE Entry & Passport Rules</h4>
+                        <p class="text-xs text-gray-300 leading-relaxed">Passports must have a minimum validity of 6 months. Tourists overstaying their permitted duration incur standard ICP fines of AED 50/day. Ensure mandatory travel medical coverage.</p>
+                    </div>
+                    <div class="bg-cardBg border border-gray-800 rounded-xl p-5 shadow-lg space-y-3">
+                        <div class="text-accentGold text-2xl"><i class="fa-solid fa-building-columns"></i></div>
+                        <h4 class="font-bold text-white text-base">VFS & Embassy Submissions</h4>
+                        <p class="text-xs text-gray-300 leading-relaxed">Biometric registration requires physical presence at VFS centers. Submit verifiable 6-month bank statements with valid bank seals to avoid delays.</p>
+                    </div>
+                    <div class="bg-cardBg border border-gray-800 rounded-xl p-5 shadow-lg space-y-3">
+                        <div class="text-accentGold text-2xl"><i class="fa-solid fa-plane-circle-check"></i></div>
+                        <h4 class="font-bold text-white text-base">IATA Ticketing & Flight Terms</h4>
+                        <p class="text-xs text-gray-300 leading-relaxed">Passenger names on tickets must match passport spelling exactly. Re-issuance fees and fare differences apply as per individual airline tariff rules.</p>
+                    </div>
+                    <div class="bg-cardBg border border-gray-800 rounded-xl p-5 shadow-lg space-y-3">
+                        <div class="text-accentGold text-2xl"><i class="fa-solid fa-shield-cat"></i></div>
+                        <h4 class="font-bold text-white text-base">Customs & Foreign Currency</h4>
+                        <p class="text-xs text-gray-300 leading-relaxed">Carrying cash above AED 60,000 (or equivalent) requires declaration upon arrival/departure. Prohibited goods, unprescribed medicines, and illegal items are strictly regulated.</p>
+                    </div>
+                    <div class="bg-cardBg border border-gray-800 rounded-xl p-5 shadow-lg space-y-3">
+                        <div class="text-accentGold text-2xl"><i class="fa-solid fa-briefcase"></i></div>
+                        <h4 class="font-bold text-white text-base">RAKEZ Trade Setup & Advisory</h4>
+                        <p class="text-xs text-gray-300 leading-relaxed">Ras Al Khaimah Economic Zone offers zero corporate tax options for qualified entities, 100% foreign ownership, and fast-track trade licensing.</p>
+                    </div>
+                    <div class="bg-cardBg border border-gray-800 rounded-xl p-5 shadow-lg space-y-3">
+                        <div class="text-accentGold text-2xl"><i class="fa-solid fa-headset"></i></div>
+                        <h4 class="font-bold text-white text-base">24/7 Consular Emergency Line</h4>
+                        <p class="text-xs text-gray-300 leading-relaxed">Need urgent flight rerouting or emergency visa assistance? Our dedicated desk in RAKEZ Free Zone is accessible via direct WhatsApp and phone support.</p>
+                    </div>
+                </div>
+
+                <!-- Accordion FAQs -->
+                <div class="bg-cardBg border border-accentGold/30 rounded-2xl p-6 shadow-xl space-y-4">
+                    <h3 class="text-xl font-bold text-white flex items-center space-x-2 border-b border-gray-800 pb-3">
+                        <i class="fa-solid fa-circle-question text-accentGold"></i>
+                        <span>Frequently Asked Questions</span>
+                    </h3>
+                    <div class="space-y-3 text-xs">
+                        <div class="bg-darkBg p-4 rounded-xl border border-gray-800">
+                            <h5 class="font-bold text-accentGold text-sm">How long does a Schengen VFS visa take to process?</h5>
+                            <p class="text-gray-300 mt-1">Standard Schengen visa processing takes 10 to 14 working days from your VFS appointment date. Peak holiday seasons may take up to 21 working days.</p>
+                        </div>
+                        <div class="bg-darkBg p-4 rounded-xl border border-gray-800">
+                            <h5 class="font-bold text-accentGold text-sm">What documents are needed for UAE Tourist Visas?</h5>
+                            <p class="text-gray-300 mt-1">Passport front page copy (minimum 6 months validity), clear passport photo with white background, and return flight itinerary.</p>
+                        </div>
+                        <div class="bg-darkBg p-4 rounded-xl border border-gray-800">
+                            <h5 class="font-bold text-accentGold text-sm">Are prices customizable for international tour packages?</h5>
+                            <p class="text-gray-300 mt-1">Yes! All tour packages can be upgraded to 5-star hotels, private chauffeur transfers, or extended stays upon request with our desk agent.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-darkBg border-t border-gray-800 py-10 mt-12 text-center text-gray-400 text-xs">
+        <div class="max-w-7xl mx-auto px-4 space-y-4">
+            <div class="flex justify-center items-center space-x-2 text-white font-bold text-base">
+                <div class="w-8 h-8 rounded-full bg-accentGold flex items-center justify-center text-black font-bold text-sm">
+                    <i class="fa-solid fa-earth-americas"></i>
+                </div>
+                <span>CITIC TOURISM & LEISURE CONSULTING</span>
+            </div>
+            <div class="flex justify-center items-center space-x-4 text-xs font-medium">
+                <a href="tel:0556217946" class="text-gray-300 hover:text-accentGold transition flex items-center space-x-1.5"><i class="fa-solid fa-phone text-accentGold"></i><span>0556217946</span></a>
+                <span class="text-gray-600">|</span>
+                <a href="https://wa.me/971556217946?text=Hello%20CITIC%20Tourism" target="_blank" class="text-gray-300 hover:text-accentGold transition flex items-center space-x-1.5"><i class="fa-brands fa-whatsapp text-green-500"></i><span>WhatsApp Support</span></a>
+            </div>
+            <div class="flex justify-center items-center space-x-4 text-xs font-medium">
+                <a href="javascript:void(0)" onclick="openTermsModal()" class="text-gray-300 hover:text-accentGold transition">Terms & Conditions</a>
+                <span class="text-gray-600">|</span>
+                <a href="javascript:void(0)" onclick="openPrivacyModal()" class="text-gray-300 hover:text-accentGold transition">Privacy Policy</a>
+            </div>
+            <p>© 2026 CITIC Tourism & Leisure Consulting (RAKEZ Free Zone, UAE). All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Complete Unified JavaScript -->
+    <script>
+        // Currency Switching Logic
+        const currencyRates = { AED: 1, USD: 0.27, EUR: 0.25, GBP: 0.21 };
+        const currencySymbols = { AED: 'AED ', USD: '$', EUR: '€', GBP: '£' };
+        let currentCurrency = 'AED';
+
+        function changeCurrency() {
+            currentCurrency = document.getElementById('currency-select').value;
+            renderPackages();
+            renderIntlTours();
+        }
+
+        function formatPrice(aedAmount) {
+            const rate = currencyRates[currentCurrency];
+            const converted = Math.round(aedAmount * rate);
+            return `${currencySymbols[currentCurrency]}${converted}`;
+        }
+
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+
+        // 193 UN Countries List
+        const all193Countries = [
+            "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria",
+            "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan",
+            "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia",
+            "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo", "Costa Rica",
+            "Croatia", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt",
+            "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France", "Gabon",
+            "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana",
+            "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel",
+            "Italy", "Ivory Coast", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Kuwait", "Kyrgyzstan",
+            "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar",
+            "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia",
+            "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal",
+            "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Korea", "North Macedonia", "Norway", "Oman", "Pakistan",
+            "Palau", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania",
+            "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal",
+            "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Korea",
+            "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria", "Tajikistan", "Tanzania",
+            "Thailand", "Timor-Leste", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda",
+            "Ukraine", "United Arab Emirates", "United Kingdom", "United States of America", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam",
+            "Yemen", "Zambia", "Zimbabwe"
+        ];
+
+        const countryDropdown = document.getElementById('global-visa-country');
+        if (countryDropdown) {
+            all193Countries.forEach(c => {
+                const opt = document.createElement('option');
+                opt.value = c;
+                opt.textContent = c;
+                if (c === "United Kingdom") opt.selected = true;
+                countryDropdown.appendChild(opt);
+            });
+        }
+
+        // Modals Logic
+        function openGlobalModal(contentHtml) {
+            document.getElementById('modal-content').innerHTML = contentHtml;
+            document.getElementById('global-modal').classList.remove('hidden');
+        }
+
+        function closeGlobalModal() {
+            document.getElementById('global-modal').classList.add('hidden');
+        }
+
+        function showServiceSecurityAlertModal(serviceTitle, onAcceptCallback) {
+            openGlobalModal(`
+                <div class="space-y-4 text-center">
+                    <div class="w-16 h-16 bg-amber-500/25 text-amber-400 rounded-full flex items-center justify-center mx-auto border border-amber-500/40 text-3xl">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+                    <div class="space-y-2">
+                        <span class="bg-amber-900/40 text-amber-300 text-xs font-bold px-3 py-1 rounded-full border border-amber-700/50 uppercase tracking-wider">Security Alert & Policy Notice</span>
+                        <h3 class="text-xl font-extrabold text-white">Important Service Disclaimer & Refund Policy</h3>
+                        <p class="text-xs text-accentGold font-semibold">Service Context: ${serviceTitle}</p>
+                    </div>
+                    <div class="bg-darkBg p-4 rounded-xl border border-amber-500/35 text-left space-y-3 text-xs text-gray-300 leading-relaxed max-h-60 overflow-y-auto">
+                        <p class="font-bold text-white flex items-center"><i class="fa-solid fa-shield-halved text-accentGold mr-1.5"></i> Terms & Conditions Overview:</p>
+                        <ul class="list-disc pl-5 space-y-2">
+                            <li><strong>Service Charge:</strong> The service charge is strictly non-refundable once application processing commences.</li>
+                            <li><strong>Authority Rejection:</strong> Fee refund for denied permits depends on official government policies.</li>
+                            <li><strong>Customer Acknowledgment:</strong> By proceeding, you accept these binding terms.</li>
+                        </ul>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3 pt-2">
+                        <button onclick="closeGlobalModal()" class="w-full bg-darkBg hover:bg-gray-800 text-gray-300 border border-gray-700 font-bold py-2.5 rounded-xl text-xs transition cursor-pointer">Deny & Exit</button>
+                        <button id="accept-disclaimer-btn" class="w-full bg-accentGold hover:bg-accentGoldHover text-black font-bold py-2.5 rounded-xl text-xs transition flex items-center justify-center space-x-1 shadow-lg cursor-pointer">Accept & Continue</button>
+                    </div>
+                </div>
+            `);
+            document.getElementById('accept-disclaimer-btn').onclick = function() {
+                closeGlobalModal();
+                if (typeof onAcceptCallback === 'function') onAcceptCallback();
+            };
+        }
+
+        function openTermsModal() {
+            openGlobalModal(`
+                <div class="space-y-4 text-white">
+                    <h3 class="text-xl font-bold border-b border-gray-800 pb-2">Terms and Conditions</h3>
+                    <div class="bg-darkBg p-4 rounded-xl border border-gray-800 space-y-3 text-xs text-gray-300 leading-relaxed max-h-80 overflow-y-auto">
+                        <p><strong>1. Introduction:</strong> Welcome to CITIC Tourism & Leisure Consulting, based in RAKEZ Free Zone, Ras Al Khaimah, UAE.</p>
+                        <p><strong>2. Services:</strong> We provide visa assistance, corporate setup, flight bookings, and tourist packages. All filings are subject to immigration laws.</p>
+                        <p><strong>3. Security:</strong> CITIC Tourism never asks for direct online payment transfers to personal bank accounts.</p>
+                    </div>
+                    <button onclick="closeGlobalModal()" class="w-full bg-accentGold text-black font-bold py-2 rounded-xl text-xs">Close</button>
+                </div>
+            `);
+        }
+
+        function openPrivacyModal() {
+            openGlobalModal(`
+                <div class="space-y-4 text-white">
+                    <h3 class="text-xl font-bold border-b border-gray-800 pb-2">Privacy Policy</h3>
+                    <div class="bg-darkBg p-4 rounded-xl border border-gray-800 space-y-3 text-xs text-gray-300 leading-relaxed max-h-80 overflow-y-auto">
+                        <p><strong>1. Data Collection:</strong> We collect personal details and passport information strictly for visa and travel processing.</p>
+                        <p><strong>2. Data Protection:</strong> Personal data is processed in compliance with RAKEZ regulatory laws and UAE privacy standards.</p>
+                    </div>
+                    <button onclick="closeGlobalModal()" class="w-full bg-accentGold text-black font-bold py-2 rounded-xl text-xs">Close</button>
+                </div>
+            `);
+        }
+
+        // Interactive Checklist Drawer
+        function toggleChecklistDrawer() {
+            document.getElementById('checklist-drawer').classList.toggle('translate-x-full');
+        }
+
+        const checklistTasks = [
+            "Valid Passport (Minimum 6 months validity)",
+            "Recent Passport Photo (White background)",
+            "Bank Statement (3-6 months with bank seal)",
+            "Confirmed Return Flight Ticket",
+            "Hotel Accommodation Booking Voucher",
+            "Travel / Medical Health Insurance",
+            "UAE Visa Copy / Entry Permit"
+        ];
+
+        function renderChecklist() {
+            const container = document.getElementById('checklist-items');
+            if (!container) return;
+            container.innerHTML = '';
+            checklistTasks.forEach((task, idx) => {
+                const saved = localStorage.getItem(`citic_task_${idx}`) === 'true';
+                container.innerHTML += `
+                    <label class="flex items-start space-x-3 cursor-pointer p-2 rounded hover:bg-darkBg transition">
+                        <input type="checkbox" ${saved ? 'checked' : ''} onchange="updateChecklist(${idx}, this.checked)" class="mt-1 accent-accentGold w-4 h-4 rounded">
+                        <span class="${saved ? 'line-through text-gray-500' : 'text-gray-200'}">${task}</span>
+                    </label>
+                `;
+            });
+        }
+
+        function updateChecklist(idx, checked) {
+            localStorage.setItem(`citic_task_${idx}`, checked);
+            renderChecklist();
+        }
+
+        function clearChecklist() {
+            checklistTasks.forEach((_, idx) => localStorage.removeItem(`citic_task_${idx}`));
+            renderChecklist();
+        }
+        renderChecklist();
+
+        function sendChecklistToAgent() {
+            showServiceSecurityAlertModal("Paperwork Checklist Submission", function() {
+                openGlobalModal(`
+                    <div class="space-y-4 text-xs">
+                        <div class="flex justify-between items-center border-b border-gray-800 pb-2">
+                            <h3 class="text-base font-bold text-white flex items-center space-x-2">
+                                <i class="fa-solid fa-list-check text-accentGold"></i>
+                                <span>Checklist Requirements & WhatsApp Share</span>
+                            </h3>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label class="block font-bold text-accentGold text-xs"><i class="fa-solid fa-user mr-1"></i> Customer Full Name</label>
+                            <input type="text" id="checklist-customer-name" placeholder="Enter your full name" class="w-full bg-darkBg border border-gray-700 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-accentGold">
+                        </div>
+
+                        <div class="bg-darkBg p-3.5 rounded-xl border border-gray-800 space-y-2 max-h-48 overflow-y-auto">
+                            <span class="font-bold text-accentGold block"><i class="fa-solid fa-file-contract mr-1.5"></i> Actual Paperwork Status:</span>
+                            <ul class="space-y-1 text-gray-200">
+                                ${checklistTasks.map((task, idx) => {
+                                    const checked = localStorage.getItem(`citic_task_${idx}`) === 'true';
+                                    return `<li class="flex items-center space-x-2"><i class="fa-solid ${checked ? 'fa-circle-check text-green-400' : 'fa-circle-xmark text-red-400'}"></i><span>${task}</span></li>`;
+                                }).join('')}
+                            </ul>
+                        </div>
+
+                        <button onclick="shareChecklistWhatsApp()" class="w-full bg-green-600 hover:bg-green-500 text-white font-extrabold py-3 rounded-xl transition flex items-center justify-center space-x-2 shadow-lg cursor-pointer">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                            <span>Share Checklist to Agent via WhatsApp</span>
+                        </button>
+                    </div>
+                `);
+            });
+        }
+
+        function shareChecklistWhatsApp() {
+            const nameInput = document.getElementById('checklist-customer-name').value.trim();
+            const custName = nameInput || "Valued Customer";
+            let docsSummary = [];
+            checklistTasks.forEach((task, idx) => {
+                const checked = localStorage.getItem(`citic_task_${idx}`) === 'true';
+                docsSummary.push(`${checked ? '✅' : '❌'} ${task}`);
+            });
+
+            const waMsg = `Hello CITIC Tourism,\n\n*Customer Name:* ${custName}\n*Paperwork Checklist Status:*\n${docsSummary.join('\n')}\n\nPlease review my documents and advise.`;
+            window.open(`https://wa.me/971556217946?text=${encodeURIComponent(waMsg)}`, '_blank');
+        }
+
+        // Flight Search & Status Handlers
+        let currentTripType = 'round';
+        function setTripType(type) {
+            currentTripType = type;
+            document.getElementById('trip-round').className = type === 'round' ? "px-3 py-1 text-xs font-bold rounded-md bg-accentGold text-black transition" : "px-3 py-1 text-xs font-bold rounded-md text-gray-400 hover:text-white transition";
+            document.getElementById('trip-one').className = type === 'one' ? "px-3 py-1 text-xs font-bold rounded-md bg-accentGold text-black transition" : "px-3 py-1 text-xs font-bold rounded-md text-gray-400 hover:text-white transition";
+            document.getElementById('return-date-container').style.display = type === 'one' ? 'none' : 'block';
+        }
+
+        function handleFlightSearch(e) {
+            e.preventDefault();
+            const from = document.getElementById('flight-from').value;
+            const to = document.getElementById('flight-to').value;
+            const depart = document.getElementById('flight-depart').value;
+            showServiceSecurityAlertModal(`Flight Search: ${from} to ${to}`, function() {
+                const waText = encodeURIComponent(`Hello CITIC Tourism, I would like to book a flight:\nFrom: ${from}\nTo: ${to}\nDeparture: ${depart}`);
+                window.open(`https://wa.me/971556217946?text=${waText}`, '_blank');
+            });
+        }
+
+        function handleStatusLookup(e) {
+            e.preventDefault();
+            const ref = document.getElementById('status-ref-input').value;
+            showServiceSecurityAlertModal(`Status Lookup: ${ref}`, function() {
+                openGlobalModal(`
+                    <div class="space-y-4 text-xs">
+                        <h3 class="text-base font-bold text-white">Status for Reference: ${ref}</h3>
+                        <div class="bg-darkBg p-3 rounded-xl space-y-2 border border-gray-800">
+                            <p class="text-green-400 font-bold">Status: Processing with Embassy / Immigration</p>
+                            <p class="text-gray-300">Estimated Completion: 2-4 Working Days</p>
+                        </div>
+                        <a href="https://wa.me/971556217946?text=Hello%20CITIC%20Tourism%2C%20checking%20ref%3A%20${ref}" target="_blank" class="block w-full text-center bg-accentGold text-black font-bold py-2 rounded-xl">Chat with Desk Agent</a>
+                    </div>
+                `);
+            });
+        }
+
+        function handleGlobalVisaSearch(e) {
+            e.preventDefault();
+            const country = document.getElementById('global-visa-country').value;
+            const nat = document.getElementById('global-visa-nationality').value;
+            const purpose = document.getElementById('global-visa-purpose').value;
+            const speed = document.getElementById('global-visa-speed').value;
+
+            showServiceSecurityAlertModal(`Global Visa: ${country}`, function() {
+                openGlobalModal(`
+                    <div class="space-y-4 text-xs">
+                        <div class="flex justify-between items-center border-b border-gray-800 pb-2">
+                            <h3 class="text-base font-bold text-white">Visa Requirements: ${country}</h3>
+                            <span class="text-[10px] bg-accentGold/20 text-accentGold px-2 py-0.5 rounded font-bold">${speed}</span>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label class="block font-bold text-accentGold text-xs"><i class="fa-solid fa-user mr-1"></i> Customer Full Name</label>
+                            <input type="text" id="global-visa-customer-name" placeholder="Enter your full name" class="w-full bg-darkBg border border-gray-700 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-accentGold">
+                        </div>
+
+                        <div class="bg-darkBg p-3.5 rounded-xl border border-gray-800 space-y-2">
+                            <span class="font-bold text-accentGold flex items-center"><i class="fa-solid fa-passport mr-1.5"></i> Actual Document Requirements:</span>
+                            <ul class="list-disc pl-4 text-gray-200 space-y-1 font-medium">
+                                <li>Valid Passport (${nat}) with minimum 6 months validity</li>
+                                <li>Recent passport size photograph with white background</li>
+                                <li>Confirmed flight itinerary & hotel booking for ${purpose}</li>
+                                <li>Bank statement / financial proof (${speed} requested)</li>
+                            </ul>
+                        </div>
+
+                        <button onclick="shareGlobalVisaWhatsApp('${country}', '${nat}', '${purpose}', '${speed}')" class="w-full bg-green-600 hover:bg-green-500 text-white font-extrabold py-3 rounded-xl transition flex items-center justify-center space-x-2 shadow-lg cursor-pointer">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                            <span>Share Requirements & Connect via WhatsApp</span>
+                        </button>
+                    </div>
+                `);
+            });
+        }
+
+        function shareGlobalVisaWhatsApp(country, nat, purpose, speed) {
+            const nameInput = document.getElementById('global-visa-customer-name').value.trim();
+            const custName = nameInput || "Valued Customer";
+
+            const waMsg = `Hello CITIC Tourism,\n\n*Customer Name:* ${custName}\n*Destination Country:* ${country}\n*Passport:* ${nat}\n*Purpose:* ${purpose}\n*Speed:* ${speed}\n\n*Actual Document Requirements:* Passport (6m validity), Passport Photo, Hotel & Flight Itinerary, Bank Statement.\n\nPlease process my visa inquiry.`;
+            window.open(`https://wa.me/971556217946?text=${encodeURIComponent(waMsg)}`, '_blank');
+        }
+
+        // UAE Services Data (24 items)
+        const uaeServices = [
+            { id: 1, title: "UAE Tourist Visa 30/90 Days", desc: "Fast-track tourist visa processing with guaranteed approval support under UAE immigration bylaws.", docs: "Passport Copy (Min 6 mos), Digital Photo", rules: "Mandatory GDRFA / ICP compliance." },
+            { id: 2, title: "RAKEZ Corporate Setup", desc: "Complete business setup, trade licensing, and office solutions in Ras Al Khaimah Economic Zone.", docs: "Passport Copy, 3 Proposed Trade Names", rules: "Governed by RAKEZ Free Zone Authority." },
+            { id: 3, title: "Airport Meet & Greet VIP", desc: "Fast-track immigration clearance, porter assistance, and lounge access.", docs: "Flight Reference, Passport Copy", rules: "Requires 24h advance reservation." },
+            { id: 4, title: "Inbound Heritage & Safaris", desc: "Guided city tours of Dubai and Abu Dhabi, desert safaris, dune bashing, and dhow cruises.", docs: "Guest Count, Preferred Date", rules: "Safety waiver applies for safaris." },
+            { id: 5, title: "VIP Yacht & Luxury Rental", desc: "Exclusive private yacht charters in Dubai Marina, helicopter city tours, and luxury cars.", docs: "Guest Manifest, ID Copies", rules: "Dubai Maritime Authority compliance." },
+            { id: 6, title: "MICE & Corporate Retreats", desc: "Specialized packages for Meetings, Incentives, Conferences, and Exhibitions with gala dinners.", docs: "Event Scope, Delegate Count", rules: "Custom venue contracts apply." },
+            { id: 7, title: "Burj Khalifa Observation Deck", desc: "At The Top tickets (Levels 124, 125 & 148) with skip-the-line access.", docs: "Passport Copy, Date & Time Slot", rules: "Timed entry ticket policy." },
+            { id: 8, title: "Chauffeur & Luxury Transfers", desc: "Mercedes and luxury SUV rentals with professional multilingual drivers.", docs: "Passport / License Copy", rules: "UAE RTA traffic compliance." },
+            { id: 9, title: "Emirates ID & Medical Typing", desc: "Fast-track typing and coordination for Emirates ID and residency visa medicals.", docs: "Passport, Entry Permit Copy", rules: "Governed by ICP rules." },
+            { id: 10, title: "Document Attestation", desc: "MOFA attestation, educational degree and commercial document verification.", docs: "Original Certificates, Passport", rules: "Processed via MOFA UAE." },
+            { id: 11, title: "Golden Visa Advisory", desc: "Consultation and application support for UAE 10-Year Golden Visas.", docs: "Property Deed (AED 2M+) or Investor Proof", rules: "UAE Cabinet Resolution criteria." },
+            { id: 12, title: "Family Residence Visas", desc: "Sponsorship processing, entry permits, and visa stamping for family members.", docs: "Sponsor Visa, Salary Certificate", rules: "Salary & tenancy threshold apply." },
+            { id: 13, title: "Automated WhatsApp Integration", desc: "Setup 24/7 automated WhatsApp business API routing and menus.", docs: "Meta Business Account Access", rules: "Meta API Terms apply." },
+            { id: 14, title: "Integrated Invoicing Dashboards", desc: "Streamlined digital invoicing and quote generation tools.", docs: "Company Routing Details", rules: "FTA UAE record keeping rules." },
+            { id: 15, title: "Free Zone Trade Renewals", desc: "Ongoing regulatory support, license renewals, and share transfers.", docs: "Current Trade License", rules: "Annual renewal deadline applies." },
+            { id: 16, title: "Corporate Bank Account Setup", desc: "Assistance with opening corporate bank accounts in UAE Tier-1 banks.", docs: "Trade License, MOA, Bank Proof", rules: "Subject to strict bank KYC." },
+            { id: 17, title: "Express Urgent Visas", desc: "Urgent 24-48 hour tourist and transit visa processing.", docs: "Passport Copy, Urgent Letter", rules: "Immigration express quota." },
+            { id: 18, title: "VAT & Corporate Tax Services", desc: "FTA registrations, VAT return filings, and corporate tax advisory.", docs: "Financial Statements, License", rules: "FTA UAE tax filing bylaws." },
+            { id: 19, title: "Certified Legal Translation", desc: "MOFA-approved legal translation for corporate agreements and contracts.", docs: "Original Document Scans", rules: "Ministry of Justice certified." },
+            { id: 20, title: "GDRFA Fine Settlements", desc: "Liaison services for immigration file clearances and fine waivers.", docs: "Passport Copy, Visa Copy", rules: "Governed by GDRFA rules." },
+            { id: 21, title: "Public Notary Stamping", desc: "Notarization of corporate resolutions, POAs, and board minutes.", docs: "Original Agreements", rules: "Dubai Courts / Notary Public." },
+            { id: 22, title: "Study Abroad Consulting", desc: "University admission support and student visa documentation.", docs: "Academic Transcripts, Passport", rules: "Institutional entry criteria." },
+            { id: 23, title: "Travel Medical Insurance", desc: "Instant Schengen-compliant and global health insurance policies.", docs: "Passport Details, Travel Dates", rules: "Min €30,000 coverage." },
+            { id: 24, title: "Private Jet & Aviation Charter", desc: "High-end global private jet charters and luxury international aviation.", docs: "Passenger Manifest, Passport", rules: "Civil Aviation Authority rules." }
+        ];
+
+        function renderUaeServices(arr) {
+            const grid = document.getElementById('uae-services-grid');
+            if (!grid) return;
+            grid.innerHTML = '';
+            arr.forEach(s => {
+                grid.innerHTML += `
+                    <div onclick="openUaeServiceModal(${s.id})" class="bg-cardBg border border-gray-800 rounded-xl p-5 shadow-lg flex flex-col justify-between hover:border-accentGold transition cursor-pointer group">
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-start">
+                                <span class="text-xs bg-accentGold/10 text-accentGold font-bold px-2 py-0.5 rounded border border-accentGold/30">Service #${s.id}</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square text-accentGold group-hover:scale-125 transition"></i>
+                            </div>
+                            <h4 class="font-bold text-white text-base group-hover:text-accentGold transition">${s.title}</h4>
+                            <p class="text-gray-400 text-xs leading-relaxed">${s.desc}</p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-gray-800 flex items-center justify-between text-xs text-accentGold font-bold">
+                            <span>Documents & Requirements</span>
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+        renderUaeServices(uaeServices);
+
+        function filterUaeServices() {
+            const val = document.getElementById('uae-service-search').value.toLowerCase();
+            const filtered = uaeServices.filter(s => s.title.toLowerCase().includes(val) || s.desc.toLowerCase().includes(val));
+            renderUaeServices(filtered);
+        }
+
+        // DOCUMENTS INFO POPUP WINDOW WITH CUSTOMER NAME & ACTUAL REQUIREMENTS THEN SHARE WHATSAPP
+        function openUaeServiceModal(id) {
+            const s = uaeServices.find(x => x.id === id);
+            showServiceSecurityAlertModal(`Service #${s.id}: ${s.title}`, function() {
+                openGlobalModal(`
+                    <div class="space-y-4 text-xs">
+                        <div class="flex justify-between items-center border-b border-gray-800 pb-2">
+                            <h3 class="text-base font-bold text-white">${s.title}</h3>
+                            <span class="text-[10px] bg-accentGold/20 text-accentGold px-2 py-0.5 rounded font-bold">Service #${s.id}</span>
+                        </div>
+                        <p class="text-gray-300">${s.desc}</p>
+
+                        <!-- Option: Customer Name -->
+                        <div class="space-y-1.5">
+                            <label class="block font-bold text-accentGold text-xs"><i class="fa-solid fa-user mr-1"></i> Customer Full Name</label>
+                            <input type="text" id="doc-modal-customer-name" placeholder="Enter your full name" class="w-full bg-darkBg border border-gray-700 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-accentGold">
+                        </div>
+
+                        <!-- Display Actual Requirements -->
+                        <div class="bg-darkBg p-3.5 rounded-xl border border-gray-800 space-y-2">
+                            <span class="font-bold text-accentGold flex items-center"><i class="fa-solid fa-file-contract mr-1.5"></i> Actual Document Requirements:</span>
+                            <p class="text-gray-200 font-medium">${s.docs}</p>
+                            <span class="block text-[11px] text-gray-400 border-t border-gray-800/80 pt-1.5">Regulatory Note: ${s.rules}</span>
+                        </div>
+
+                        <!-- Share WhatsApp Button -->
+                        <button onclick="shareUaeServiceDocsWhatsApp(${s.id})" class="w-full bg-green-600 hover:bg-green-500 text-white font-extrabold py-3 rounded-xl transition flex items-center justify-center space-x-2 shadow-lg cursor-pointer">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                            <span>Share Requirements & Submit via WhatsApp</span>
+                        </button>
+                    </div>
+                `);
+            });
+        }
+
+        function shareUaeServiceDocsWhatsApp(id) {
+            const s = uaeServices.find(x => x.id === id);
+            const nameInput = document.getElementById('doc-modal-customer-name').value.trim();
+            const custName = nameInput || "Valued Customer";
+
+            const waMsg = `Hello CITIC Tourism,\n\n*Customer Name:* ${custName}\n*Requested Service:* ${s.title} (Service #${s.id})\n*Actual Document Requirements:* ${s.docs}\n*Notes:* ${s.rules}\n\nI have reviewed the requirements and wish to proceed.`;
+            window.open(`https://wa.me/971556217946?text=${encodeURIComponent(waMsg)}`, '_blank');
+        }
+
+        function openVisaQuizModal() {
+            openGlobalModal(`
+                <div class="space-y-4 text-xs">
+                    <h3 class="text-base font-bold text-white">Instant Visa Eligibility Quiz</h3>
+                    <p class="text-gray-300">Answer 3 simple questions to find your optimal visa path.</p>
+                    <button onclick="closeGlobalModal(); openUaeServiceModal(1);" class="w-full bg-accentGold text-black font-bold py-2 rounded-xl">Start Quiz</button>
+                </div>
+            `);
+        }
+
+        // VFS Data (30 Countries)
+        const vfsCountriesData = [
+            { name: "United Kingdom", flag: "🇬🇧", time: "15 Days", docs: "Passport, Bank Statement 6m, Job Letter" },
+            { name: "Canada", flag: "🇨🇦", time: "20 Days", docs: "Biometrics, Travel Plan, Proof of Funds" },
+            { name: "Australia", flag: "🇦🇺", time: "15 Days", docs: "Visitor Form, Financial Proof, Employer NOC" },
+            { name: "France", flag: "🇫🇷", time: "12 Days", docs: "Schengen Form, Insurance €30k, Flight Booking" },
+            { name: "Germany", flag: "🇩🇪", time: "12 Days", docs: "Schengen Form, Hotel Voucher, Bank Statement" },
+            { name: "Switzerland", flag: "🇨🇭", time: "12 Days", docs: "Travel Insurance, 3m Bank Statements" },
+            { name: "Italy", flag: "🇮🇹", time: "12 Days", docs: "Detailed Itinerary, Employment Contract" },
+            { name: "Spain", flag: "🇪🇸", time: "12 Days", docs: "Hotel Booking, Flight Tickets, Insurance" },
+            { name: "Netherlands", flag: "🇳🇱", time: "12 Days", docs: "Financial Solvency Proof, Medical Cover" },
+            { name: "Greece", flag: "🇬🇷", time: "12 Days", docs: "Passport Copy, Employer Approval" },
+            { name: "Portugal", flag: "🇵🇹", time: "12 Days", docs: "Schengen Visa Form, Hotel Confirmation" },
+            { name: "Austria", flag: "🇦🇹", time: "12 Days", docs: "Passport Scans, Bank Balance Copy" },
+            { name: "Sweden", flag: "🇸🇪", time: "12 Days", docs: "Travel Insurance, Accommodation Proof" },
+            { name: "Norway", flag: "🇳🇴", time: "12 Days", docs: "Flight Plan, Bank Statement" },
+            { name: "Denmark", flag: "🇩🇰", time: "12 Days", docs: "Schengen Form, Return Ticket" },
+            { name: "Belgium", flag: "🇧🇪", time: "12 Days", docs: "Insurance Policy, Financial Proof" },
+            { name: "Finland", flag: "🇫🇮", time: "12 Days", docs: "Hotel Booking, Passport Scan" },
+            { name: "Ireland", flag: "🇮🇪", time: "18 Days", docs: "AVATS Form, Purpose Letter" },
+            { name: "New Zealand", flag: "🇳🇿", time: "20 Days", docs: "Visitor Visa Application, Funds" },
+            { name: "Japan", flag: "🇯🇵", time: "7 Days", docs: "Schedule of Stay, Bank Statement" },
+            { name: "South Korea", flag: "🇰🇷", time: "7 Days", docs: "Visa Form, Employer Letter" },
+            { name: "United States", flag: "🇺🇸", time: "Interview Required", docs: "DS-160 Form, Appointment Letter" },
+            { name: "Singapore", flag: "🇸🇬", time: "4 Days", docs: "Form 14A, Photo, Ticket Copy" },
+            { name: "Malaysia", flag: "🇲🇾", time: "4 Days", docs: "eVisa Application, Hotel Voucher" },
+            { name: "South Africa", flag: "🇿🇦", time: "12 Days", docs: "BI-84 Form, Yellow Fever Cert" },
+            { name: "Turkey", flag: "🇹🇷", time: "5 Days", docs: "Sticker / eVisa, Bank Statement" },
+            { name: "Czech Republic", flag: "🇨🇿", time: "12 Days", docs: "Schengen Insurance, Flight Booking" },
+            { name: "Poland", flag: "🇵🇱", time: "12 Days", docs: "Schengen Form, Bank Statement" },
+            { name: "Hungary", flag: "🇭🇺", time: "12 Days", docs: "Travel Insurance, Hotel Proof" },
+            { name: "Brazil", flag: "🇧🇷", time: "14 Days", docs: "Return Flight, Financial Proof" }
+        ];
+
+        const vfsSelect = document.getElementById('vfs-country-select');
+        const vfsGrid = document.getElementById('vfs-countries-grid');
+        if (vfsGrid && vfsSelect) {
+            vfsCountriesData.forEach(c => {
+                vfsSelect.innerHTML += `<option value="${c.name}">${c.flag} ${c.name}</option>`;
+                vfsGrid.innerHTML += `
+                    <div class="bg-cardBg border border-gray-800 rounded-xl p-5 shadow-lg flex flex-col justify-between hover:border-accentGold transition space-y-3">
+                        <div class="flex items-center justify-between text-accentGold font-bold">
+                            <span class="text-white text-sm"><span class="text-xl mr-1.5">${c.flag}</span>${c.name}</span>
+                            <span class="text-[10px] bg-accentGold/10 px-2 py-0.5 rounded border border-accentGold/30">${c.time}</span>
+                        </div>
+                        <p class="text-xs text-gray-400">View document checklist and book VFS appointment.</p>
+                        <button onclick="openVfsDocModal('${c.name}')" class="w-full bg-accentGold hover:bg-accentGoldHover text-black text-xs font-bold py-2 rounded-lg transition flex items-center justify-center space-x-1">
+                            <i class="fa-solid fa-file-lines text-sm"></i>
+                            <span>View Requirements & Share</span>
+                        </button>
+                    </div>
+                `;
+            });
+        }
+
+        function openVfsDocModal(countryName) {
+            const c = vfsCountriesData.find(x => x.name === countryName);
+            if (!c) return;
+            showServiceSecurityAlertModal(`VFS Visa: ${c.name}`, function() {
+                openGlobalModal(`
+                    <div class="space-y-4 text-xs">
+                        <div class="flex justify-between items-center border-b border-gray-800 pb-2">
+                            <h3 class="text-base font-bold text-white">${c.flag} VFS ${c.name} Visa Requirements</h3>
+                            <span class="text-[10px] bg-accentGold/20 text-accentGold px-2 py-0.5 rounded font-bold">${c.time}</span>
+                        </div>
+
+                        <!-- Option: Customer Name -->
+                        <div class="space-y-1.5">
+                            <label class="block font-bold text-accentGold text-xs"><i class="fa-solid fa-user mr-1"></i> Customer Full Name</label>
+                            <input type="text" id="vfs-modal-customer-name" placeholder="Enter your full name" class="w-full bg-darkBg border border-gray-700 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-accentGold">
+                        </div>
+
+                        <!-- Actual Requirements -->
+                        <div class="bg-darkBg p-3.5 rounded-xl border border-gray-800 space-y-2">
+                            <span class="font-bold text-accentGold flex items-center"><i class="fa-solid fa-file-lines mr-1.5"></i> Actual Document Requirements:</span>
+                            <p class="text-gray-200 font-medium">${c.docs}</p>
+                        </div>
+
+                        <!-- Share WhatsApp Button -->
+                        <button onclick="shareVfsDocsWhatsApp('${c.name}')" class="w-full bg-green-600 hover:bg-green-500 text-white font-extrabold py-3 rounded-xl transition flex items-center justify-center space-x-2 shadow-lg cursor-pointer">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                            <span>Share Requirements & Request VFS via WhatsApp</span>
+                        </button>
+                    </div>
+                `);
+            });
+        }
+
+        function shareVfsDocsWhatsApp(countryName) {
+            const c = vfsCountriesData.find(x => x.name === countryName);
+            const nameInput = document.getElementById('vfs-modal-customer-name').value.trim();
+            const custName = nameInput || "Valued Customer";
+
+            const waMsg = `Hello CITIC Tourism,\n\n*Customer Name:* ${custName}\n*VFS Destination:* ${c.flag} ${c.name}\n*Actual Document Requirements:* ${c.docs}\n*Processing Estimate:* ${c.time}\n\nPlease assist with my VFS visa appointment booking.`;
+            window.open(`https://wa.me/971556217946?text=${encodeURIComponent(waMsg)}`, '_blank');
+        }
+
+        function triggerVfsWhatsAppBooking(country) {
+            openVfsDocModal(country);
+        }
+
+        function bookVfsAppointment() {
+            const country = document.getElementById('vfs-country-select').value;
+            const inputName = document.getElementById('vfs-name').value;
+            openVfsDocModal(country);
+            setTimeout(() => {
+                const nameElem = document.getElementById('vfs-modal-customer-name');
+                if (nameElem && inputName) nameElem.value = inputName;
+            }, 100);
+        }
+
+        // UAE Packages Data (30 packages)
+        const uaePackagesData = [
+            { id: 1, title: "Desert Safari VIP Experience", price: 150, desc: "Dune bashing, BBQ dinner, tanoura show & camel ride." },
+            { id: 2, title: "Burj Khalifa & Aquarium", price: 299, desc: "At The Top 124th Floor & Underwater Zoo combo ticket." },
+            { id: 3, title: "RAKEZ Jebel Jais Mountain Tour", price: 199, desc: "Scenic mountain drive, zipline access, and lunch." },
+            { id: 4, title: "Ferrari World Abu Dhabi Pass", price: 450, desc: "Full day pass with Formula Rossa roller coaster access." },
+            { id: 5, title: "Musandam Dibba Dhow Cruise", price: 250, desc: "Snorkeling, speed boat ride, banana ride & lunch." },
+            { id: 6, title: "Global Village & Miracle Garden", price: 120, desc: "Entry tickets to both iconic seasonal attractions." },
+            { id: 7, title: "Abu Dhabi Grand Mosque Tour", price: 180, desc: "Sheikh Zayed Mosque, Heritage Village & Corniche." },
+            { id: 8, title: "Luxury Marina Yacht Cruise", price: 350, desc: "2-hour dinner cruise along Dubai Marina skyline." },
+            { id: 9, title: "Hatta Kayaking & Mountain Safari", price: 220, desc: "Dam kayaking, Hatta Wadi Hub & mountain trails." },
+            { id: 10, title: "Yas Waterworld Day Pass", price: 270, desc: "Unlimited water rides & access to Yas Island." },
+            { id: 11, title: "Museum of the Future Pass", price: 165, desc: "Priority entry ticket to futuristic immersive exhibits." },
+            { id: 12, title: "Atlantis Aquaventure Waterpark", price: 320, desc: "World's largest waterpark pass + Lost Chambers." },
+            { id: 13, title: "Dubai Frame & Garden Glow", price: 110, desc: "Panoramas at Dubai Frame + Glow Park evening entry." },
+            { id: 14, title: "Warner Bros. World Pass", price: 345, desc: "Indoor theme park fun on Yas Island, Abu Dhabi." },
+            { id: 15, title: "Dhow Dinner Cruise Dubai Creek", price: 95, desc: "Traditional wooden dhow cruise with buffet." },
+            { id: 16, title: "Al Ain Oasis & Cultural Tour", price: 210, desc: "Jebel Hafeet mountain, Al Ain Zoo & date palm oasis." },
+            { id: 17, title: "Sharjah Islamic Heritage Tour", price: 130, desc: "Museum of Islamic Civilization & Central Souk." },
+            { id: 18, title: "Fujairah Snorkeling Tour", price: 240, desc: "Snoopy Island snorkeling & East Coast beach resort." },
+            { id: 19, title: "Dune Buggy & Quad Biking", price: 280, desc: "Self-drive dune buggy adventure in Red Dunes." },
+            { id: 20, title: "Hot Air Balloon Sunrise Safari", price: 990, desc: "Sunrise flight over Dubai desert + gourmet breakfast." },
+            { id: 21, title: "Helicopter Skyline Flight 12m", price: 680, desc: "Aerial views of Atlantis, Burj Al Arab & Burj Khalifa." },
+            { id: 22, title: "Dubai Parks 2-Park Pass", price: 310, desc: "Choose 2: Motiongate, Legoland, or Waterpark." },
+            { id: 23, title: "SeaWorld Abu Dhabi Pass", price: 375, desc: "Explore marine life realms on Yas Island." },
+            { id: 24, title: "Deep Dive Dubai Experience", price: 1800, desc: "Scuba dive in world's deepest 60m sunken city pool." },
+            { id: 25, title: "Ski Dubai Snow Classic Pass", price: 220, desc: "Unlimited snow park rides & penguin encounter." },
+            { id: 26, title: "Green Planet Indoor Rainforest", price: 140, desc: "Tropical bio-dome with free-roaming wildlife." },
+            { id: 27, title: "View At The Palm Observatory", price: 100, desc: "360-degree views of Palm Jumeirah from Level 52." },
+            { id: 28, title: "Motiongate Theme Park Ticket", price: 295, desc: "Hollywood-inspired rides at Dubai Parks." },
+            { id: 29, title: "AURA Skypool Infinity Access", price: 250, desc: "World's highest 360-degree infinity pool session." },
+            { id: 30, title: "Private Stretch Limo City Tour", price: 850, desc: "VIP 1-hour luxury limousine ride across Dubai." }
+        ];
+
+        function renderPackages() {
+            const grid = document.getElementById('packages-grid');
+            if (!grid) return;
+            grid.innerHTML = '';
+            uaePackagesData.forEach(p => {
+                grid.innerHTML += `
+                    <div class="bg-cardBg border border-gray-800 rounded-xl p-5 shadow-lg flex flex-col justify-between hover:border-accentGold transition space-y-3">
+                        <div class="space-y-2">
+                            <span class="text-[10px] bg-accentGold/10 text-accentGold font-bold px-2 py-0.5 rounded border border-accentGold/30">Package #${p.id}</span>
+                            <h4 class="font-bold text-white text-base">${p.title}</h4>
+                            <p class="text-xs text-gray-400">${p.desc}</p>
+                        </div>
+                        <div class="pt-3 border-t border-gray-800 flex items-center justify-between">
+                            <span class="text-lg font-extrabold text-accentGold">${formatPrice(p.price)}</span>
+                            <button onclick="bookPackage('${p.title}', ${p.price})" class="bg-accentGold hover:bg-accentGoldHover text-black text-xs font-bold px-3 py-1.5 rounded-lg transition flex items-center space-x-1">
+                                <i class="fa-brands fa-whatsapp"></i>
+                                <span>Book</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+        renderPackages();
+
+        function bookPackage(title, price) {
+            showServiceSecurityAlertModal(`Package: ${title}`, function() {
+                openGlobalModal(`
+                    <div class="space-y-4 text-xs">
+                        <div class="flex justify-between items-center border-b border-gray-800 pb-2">
+                            <h3 class="text-base font-bold text-white">${title}</h3>
+                            <span class="text-sm font-bold text-accentGold">${formatPrice(price)}</span>
+                        </div>
+
+                        <!-- Option: Customer Name -->
+                        <div class="space-y-1.5">
+                            <label class="block font-bold text-accentGold text-xs"><i class="fa-solid fa-user mr-1"></i> Customer Full Name</label>
+                            <input type="text" id="pkg-modal-customer-name" placeholder="Enter your full name" class="w-full bg-darkBg border border-gray-700 rounded-xl px-3.5 py-2.5 text-xs text-white focus:outline-none focus:border-accentGold">
+                        </div>
+
+                        <!-- Actual Requirements -->
+                        <div class="bg-darkBg p-3.5 rounded-xl border border-gray-800 space-y-2">
+                            <span class="font-bold text-accentGold flex items-center"><i class="fa-solid fa-clipboard-list mr-1.5"></i> Booking Requirements:</span>
+                            <p class="text-gray-200 font-medium">Valid ID / Passport copy, Preferred Booking Date & Guest Count.</p>
+                        </div>
+
+                        <button onclick="sharePkgWhatsApp('${title}', ${price})" class="w-full bg-green-600 hover:bg-green-500 text-white font-extrabold py-3 rounded-xl transition flex items-center justify-center space-x-2 shadow-lg cursor-pointer">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                            <span>Share & Book Package via WhatsApp</span>
+                        </button>
+                    </div>
+                `);
+            });
+        }
+
+        function sharePkgWhatsApp(title, price) {
+            const nameInput = document.getElementById('pkg-modal-customer-name').value.trim();
+            const custName = nameInput || "Valued Customer";
+
+            const waMsg = `Hello CITIC Tourism,\n\n*Customer Name:* ${custName}\n*Booking Package:* ${title}\n*Price:* ${formatPrice(price)}\n\nPlease assist with confirming my reservation.`;
+            window.open(`https://wa.me/971556217946?text=${encodeURIComponent(waMsg)}`, '_blank');
+        }
+
+        // International Tours Data (12 packages)
+        const intlToursData = [
+            { id: 1, title: "Georgia & Armenia Discovery", price: 2200, days: "5 Days / 4 Nights", desc: "Tbilisi, Kazbegi snow peaks, Sevan Lake, and Yerevan tours with flights & visa support." },
+            { id: 2, title: "Maldives Luxury Resort Villa", price: 4500, days: "4 Days / 3 Nights", desc: "Overwater bungalow with all-inclusive dining, speed boat transfers & sea plane option." },
+            { id: 3, title: "Turkey Highlights & Ballooning", price: 3400, days: "7 Days / 6 Nights", desc: "Istanbul Hagia Sophia, Cappadocia hot air balloon flight, and Antalya beaches." },
+            { id: 4, title: "Europe Capitals Express", price: 5800, days: "7 Days / 6 Nights", desc: "Paris Eiffel Tower, Brussels Grand Place, and Amsterdam canal cruise tour." },
+            { id: 5, title: "Thailand Tropical Island Hop", price: 2600, days: "6 Days / 5 Nights", desc: "Bangkok temples, Phuket beaches, and Phi Phi Island speedboat tour." },
+            { id: 6, title: "Japan Cherry Blossom Explorer", price: 8900, days: "8 Days / 7 Nights", desc: "Tokyo Skytree, Mount Fuji, Kyoto shrines, and bullet train experience." },
+            { id: 7, title: "Switzerland Alpine Rail Tour", price: 7500, days: "6 Days / 5 Nights", desc: "Zurich, Lucerne, Interlaken, and Jungfraujoch Top of Europe rail journey." },
+            { id: 8, title: "Egypt Nile Luxury Cruise", price: 3100, days: "6 Days / 5 Nights", desc: "Cairo Pyramids, Sphinx, Luxor & Aswan 5-star Nile river cruise." },
+            { id: 9, title: "Bali & Nusa Penida Escape", price: 2800, days: "5 Days / 4 Nights", desc: "Ubud jungle swings, rice terraces, and Nusa Penida Kelingking beach." },
+            { id: 10, title: "Kenya Maasai Mara Safari", price: 6200, days: "6 Days / 5 Nights", desc: "Nairobi game drives, Maasai Mara Big Five safari & Lake Naivasha." },
+            { id: 11, title: "Azerbaijan Baku & Shahdag", price: 1950, days: "4 Days / 3 Nights", desc: "Baku Flame Towers, Gabala cable car, and Shahdag mountain resort." },
+            { id: 12, title: "UK & Scotland Heritage Tour", price: 6800, days: "7 Days / 6 Nights", desc: "London Eye, Thames Cruise, Edinburgh Castle, and Scottish Highlands." }
+        ];
+
+        function renderIntlTours(arr = intlToursData) {
+            const grid = document.getElementById('intl-tours-grid');
+            if (!grid) return;
+            grid.innerHTML = '';
+            arr.forEach(t => {
+                grid.innerHTML += `
+                    <div class="bg-cardBg border border-gray-800 rounded-xl p-5 shadow-lg flex flex-col justify-between hover:border-accentGold transition space-y-4">
+                        <div class="space-y-2">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="bg-accentGold/20 text-accentGold font-bold px-2 py-0.5 rounded border border-accentGold/30">${t.days}</span>
+                                <span class="text-gray-400">Includes Flights</span>
+                            </div>
+                            <h4 class="font-bold text-white text-base">${t.title}</h4>
+                            <p class="text-xs text-gray-400 leading-relaxed">${t.desc}</p>
+                        </div>
+                        <div class="pt-3 border-t border-gray-800 flex items-center justify-between">
+                            <div>
+                                <span class="text-[10px] text-gray-400 block">Starting from</span>
+                                <span class="text-lg font-extrabold text-accentGold">${formatPrice(t.price)}</span>
+                            </div>
+                            <button onclick="bookPackage('${t.title}', ${t.price})" class="bg-accentGold hover:bg-accentGoldHover text-black text-xs font-bold px-4 py-2 rounded-xl transition flex items-center space-x-1 shadow">
+                                <i class="fa-brands fa-whatsapp"></i>
+                                <span>Inquire</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+        renderIntlTours();
+
+        function filterIntlTours() {
+            const input = document.getElementById('intl-tour-search').value.toLowerCase();
+            const filtered = intlToursData.filter(t => t.title.toLowerCase().includes(input) || t.desc.toLowerCase().includes(input));
+            renderIntlTours(filtered);
+        }
+    </script>
+</body>
+</html>
