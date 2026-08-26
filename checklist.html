@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CITIC Tourism | UAE Tourist Packages</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#13111C',
+                        cardBg: '#1C1929',
+                        accentGold: '#D4AF37',
+                        accentGoldHover: '#F3E5AB',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-marquee {
+            display: flex;
+            width: 200%;
+            animation: marquee 25s linear infinite;
+        }
+        .corporate-bg {
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .corporate-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(19, 17, 28, 0.88);
+            z-index: 1;
+        }
+        .corporate-content {
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body class="bg-darkBg text-gray-100 font-sans min-h-screen flex flex-col selection:bg-accentGold selection:text-black">
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-50 bg-darkBg/95 backdrop-blur border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3 cursor-pointer">
+                <div class="w-10 h-10 rounded-full bg-accentGold flex items-center justify-center text-black font-bold text-xl shadow-lg">
+                    <i class="fa-solid fa-earth-americas"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold tracking-wider text-white">CITIC TOURISM</h1>
+                    <p class="text-xs text-accentGold font-medium">RAKEZ Free Zone, UAE | & Leisure Consulting</p>
+                </div>
+            </div>
+            <nav class="hidden lg:flex items-center space-x-1 text-sm font-semibold">
+                <span class="px-3 py-2 rounded-lg text-accentGold bg-cardBg">UAE Tourist Packages</span>
+            </nav>
+            <div class="flex items-center space-x-2.5">
+                <select id="currency-select" onchange="changeCurrency()" class="bg-cardBg border border-accentGold/50 text-accentGold px-2.5 py-1.5 rounded-lg text-xs font-bold hover:bg-accentGold hover:text-black transition focus:outline-none cursor-pointer">
+                    <option value="AED">AED (د.إ)</option>
+                    <option value="USD">USD ($)</option>
+                    <option value="EUR">EUR (€)</option>
+                    <option value="GBP">GBP (£)</option>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <!-- Global Modal -->
+    <div id="global-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-cardBg border border-accentGold rounded-2xl max-w-lg w-full p-6 shadow-2xl relative space-y-4">
+            <button onclick="closeGlobalModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
+            <div id="modal-content" class="space-y-4"></div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+        <section class="space-y-8 corporate-bg rounded-2xl p-4 sm:p-8 shadow-2xl" style="background-image: url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=1600&q=80');">
+            <div class="corporate-content space-y-8">
+                <div class="bg-cardBg border border-gray-800 rounded-2xl p-8 shadow-xl">
+                    <span class="bg-accentGold/20 text-accentGold text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider border border-accentGold/30">Exclusive Holiday Deals</span>
+                    <h2 class="text-3xl font-extrabold text-white mt-2 border-l-4 border-accentGold pl-3">UAE Tourist Packages & Itineraries</h2>
+                    <p class="text-gray-300 mt-1 text-sm sm:text-base">Explore 30 curated tour packages across Abu Dhabi, Dubai, RAK, and Northern Emirates with instant WhatsApp booking.</p>
+                </div>
+
+                <!-- Marquee Offers -->
+                <div class="bg-cardBg border border-accentGold/40 rounded-xl overflow-hidden py-3 shadow-md relative">
+                    <div class="absolute left-0 top-0 bottom-0 bg-accentGold text-black font-bold px-4 z-10 flex items-center text-xs tracking-wider uppercase">
+                        <i class="fa-solid fa-bullhorn mr-2"></i> <span>Top 10 Offers</span>
+                    </div>
+                    <div class="overflow-hidden whitespace-nowrap">
+                        <div class="animate-marquee flex space-x-8 text-sm font-semibold text-accentGold">
+                            <span>🌟 Desert Safari VIP Deal - AED 150 only!</span>
+                            <span>🌟 Burj Khalifa & Dubai Aquarium Combo - AED 299</span>
+                            <span>🌟 RAK Jebel Jais Mountain Tour with Lunch - AED 199</span>
+                            <span>🌟 Ferrari World Annual Pass & Transfer - AED 450</span>
+                            <span>🌟 Musandam Dibba Cruise with Snorkeling - AED 250</span>
+                            <span>🌟 Global Village & Miracle Garden Pass - AED 120</span>
+                            <span>🌟 Abu Dhabi City Tour & Grand Mosque - AED 180</span>
+                            <span>🌟 Luxury Yacht Dinner Cruise Dubai Marina - AED 350</span>
+                            <span>🌟 Hatta Kayaking & Mountain Safari - AED 220</span>
+                            <span>🌟 Yas Waterworld Full Day Pass - AED 270</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 30 Tourist Packages Grid -->
+                <div id="packages-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-darkBg border-t border-gray-800 py-10 mt-12 text-center text-gray-400 text-xs">
+        <div class="max-w-7xl mx-auto px-4 space-y-4">
+            <p>© 2026 CITIC Tourism & Leisure Consulting (RAKEZ Free Zone, UAE). All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Script -->
+    <script>
+        const currencyRates = { AED: 1, USD: 0.27, EUR: 0.25, GBP: 0.21 };
+        const currencySymbols = { AED: 'AED ', USD: '$', EUR: '€', GBP: '£' };
+        let currentCurrency = 'AED';
+
+        function changeCurrency() {
+            currentCurrency = document.getElementById('currency-select').value;
+            renderPackages();
+        }
+
+        function formatPrice(aedAmount) {
+            const rate = currencyRates[currentCurrency];
+            const converted = (aedAmount * rate).toFixed(0);
+            return `${currencySymbols[currentCurrency]}${converted}`;
+        }
+
+        function openGlobalModal(contentHtml) {
+            document.getElementById('modal-content').innerHTML = contentHtml;
+            document.getElementById('global-modal').classList.remove('hidden');
+        }
+
+        function closeGlobalModal() {
+            document.getElementById('global-modal').classList.add('hidden');
+        }
+
+        function showServiceSecurityAlertModal(serviceTitle, onAcceptCallback) {
+            openGlobalModal(`
+                <div class="space-y-4 text-center">
+                    <div class="w-16 h-16 bg-amber-500/25 text-amber-400 rounded-full flex items-center justify-center mx-auto border border-amber-500/40 text-3xl">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                    </div>
+                    <div class="space-y-2">
+                        <h3 class="text-xl font-extrabold text-white">Service Disclaimer</h3>
+                        <p class="text-xs text-accentGold font-semibold">${serviceTitle}</p>
+                    </div>
+                    <p class="text-xs text-gray-300">Service charges non-refundable once processed. Accepts terms by continuing.</p>
+                    <div class="grid grid-cols-2 gap-3 pt-2">
+                        <button onclick="closeGlobalModal()" class="bg-darkBg text-gray-300 border border-gray-700 py-2 rounded-xl text-xs cursor-pointer">Cancel</button>
+                        <button id="accept-disclaimer-btn" class="bg-accentGold hover:bg-accentGoldHover text-black font-bold py-2 rounded-xl text-xs cursor-pointer transition">Accept</button>
+                    </div>
+                </div>
+            `);
+            document.getElementById('accept-disclaimer-btn').onclick = function() {
+                closeGlobalModal();
+                if (typeof onAcceptCallback === 'function') onAcceptCallback();
+            };
+        }
+
+        function renderPackages() {
+            const packagesGrid = document.getElementById('packages-grid');
+            packagesGrid.innerHTML = '';
+            for (let i = 1; i <= 30; i++) {
+                const aedPrice = 100 + (i * 25);
+                const formattedPrice = formatPrice(aedPrice);
+                packagesGrid.innerHTML += `
+                    <div class="bg-cardBg border border-gray-800 rounded-xl overflow-hidden shadow-lg flex flex-col justify-between hover:border-accentGold/50 transition">
+                        <div>
+                            <div class="h-40 bg-gray-800 relative overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80" alt="Package" class="w-full h-full object-cover">
+                                <span class="absolute top-2 right-2 bg-accentGold text-black text-xs font-bold px-2 py-1 rounded">${formattedPrice}</span>
+                            </div>
+                            <div class="p-4 space-y-2">
+                                <span class="text-[10px] bg-accentGold/10 text-accentGold font-bold px-2 py-0.5 rounded border border-accentGold/30">Package #${i}</span>
+                                <h4 class="font-bold text-white text-sm">UAE Elite Experience Tour #${i}</h4>
+                                <p class="text-gray-400 text-xs">Curated sightseeing itinerary across Dubai, Abu Dhabi & RAK with private transport & guide.</p>
+                            </div>
+                        </div>
+                        <div class="p-4 pt-0 space-y-2">
+                            <button onclick="bookTouristPackage(${i}, '${formattedPrice}')" class="w-full bg-accentGold hover:bg-accentGoldHover text-black text-xs font-bold py-2 rounded-lg transition flex items-center justify-center space-x-1.5 shadow cursor-pointer">
+                                <i class="fa-brands fa-whatsapp text-sm"></i>
+                                <span>Book Package #${i}</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+        renderPackages();
+
+        function bookTouristPackage(packageId, priceStr) {
+            showServiceSecurityAlertModal(`UAE Tourist Package #${packageId} (${priceStr})`, function() {
+                const pkgMsg = encodeURIComponent(`Hello CITIC Tourism, I accepted the disclaimer terms and want to book UAE Elite Experience Package #${packageId} (${priceStr}).`);
+                window.open(`https://wa.me/971556217946?text=${pkgMsg}`, '_blank');
+            });
+        }
+    </script>
+</body>
+</html>
